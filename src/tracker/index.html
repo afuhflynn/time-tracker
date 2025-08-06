@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tracker</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/esm/lucide.js"></script>
+  <link rel="stylesheet" href="../index.css">
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+
+  <!-- Mobile menu button -->
+  <button id="mobile-menu-btn" aria-label="Toggle menu">
+    <lucide-menu></lucide-menu>
+  </button>
+
+  <!-- Mobile overlay -->
+  <div id="mobile-overlay"></div>
+
+  <!-- Mobile sidebar -->
+  <aside id="mobile-sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <div style="display:flex; align-items:center;">
+        <lucide-timer style="width:1.5rem;height:1.5rem;color:var(--primary);margin-right:0.5rem;"></lucide-timer>
+        <h1>TimeTrack</h1>
+      </div>
+      <button id="mobile-close-btn" aria-label="Close menu">
+        <lucide-x></lucide-x>
+      </button>
+    </div>
+
+    <nav>
+      <ul id="mobile-nav" class="mobile-nav">
+        <li class="nav-item" data-tab="dashboard">
+          <lucide-clock></lucide-clock><span>Tracker</span>
+        </li>
+        <li class="nav-item" data-tab="history">
+          <lucide-bar-chart></lucide-bar-chart><span>Reports</span>
+        </li>
+        <li class="nav-item" data-tab="projects">
+          <lucide-folder></lucide-folder><span>Projects</span>
+        </li>
+        <li class="nav-item" data-tab="chats">
+          <lucide-message-square></lucide-message-square><span>Chats</span>
+        </li>
+        <li class="nav-item" data-tab="settings">
+          <lucide-settings></lucide-settings><span>Settings</span>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="workspace">
+        <div class="avatar">ME</div>
+        <div class="workspace-info">
+          <div class="title">My Workspace</div>
+          <div class="plan">Free Plan</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Desktop sidebar -->
+  <aside id="desktop-sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <lucide-timer style="width:1.5rem;height:1.5rem;color:var(--primary);"></lucide-timer>
+      <div class="tooltip">TimeTrack</div>
+    </div>
+
+    <nav class="desktop-nav">
+      <ul id="desktop-nav">
+        <li class="nav-item" data-tab="dashboard">
+          <lucide-clock></lucide-clock><span>Tracker</span>
+          <div class="tooltip">Tracker</div>
+        </li>
+        <li class="nav-item" data-tab="history">
+          <lucide-bar-chart></lucide-bar-chart><span>Reports</span>
+          <div class="tooltip">Reports</div>
+        </li>
+        <li class="nav-item" data-tab="projects">
+          <lucide-folder></lucide-folder><span>Projects</span>
+          <div class="tooltip">Projects</div>
+        </li>
+        <li class="nav-item" data-tab="chats">
+          <lucide-message-square></lucide-message-square><span>Chats</span>
+          <div class="tooltip">Chats</div>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <ul>
+        <li class="nav-item" data-tab="help">
+          <lucide-help-circle></lucide-help-circle><span>Help</span>
+          <div class="tooltip">Help</div>
+        </li>
+        <li class="nav-item" data-tab="settings">
+          <lucide-settings></lucide-settings><span>Settings</span>
+          <div class="tooltip">Settings</div>
+        </li>
+        <li class="nav-item" data-tab="profile">
+          <lucide-user></lucide-user><span>Profile</span>
+          <div class="tooltip">Profile</div>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Main content placeholder -->
+  <main id="main-content">
+    <h1 style="font-size:1.5rem; font-weight:bold;">Content Area</h1>
+    <p>Click sidebar items to change active state.</p>
+  </main>
+
+  <script>
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileClose = document.getElementById('mobile-close-btn');
+    const mobileSidebar = document.getElementById('mobile-sidebar');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const mainEl = document.body;
+
+    mobileBtn.addEventListener('click', () => {
+      mobileSidebar.style.transform = mobileSidebar.style.transform === 'translateX(0px)'
+        ? 'translateX(-100%)'
+        : 'translateX(0)';
+      mobileOverlay.style.display = mobileOverlay.style.display === 'block' ? 'none' : 'block';
+      mainEl.classList.toggle('sidebar-open');
+    });
+    mobileClose.addEventListener('click', () => {
+      mobileSidebar.style.transform = 'translateX(-100%)';
+      mobileOverlay.style.display = 'none';
+      mainEl.classList.remove('sidebar-open');
+    });
+    mobileOverlay.addEventListener('click', () => mobileClose.click());
+
+    function clearActive() {
+      document.querySelectorAll('.nav-item').forEach(el => {
+        el.classList.remove('active-mobile', 'active-desktop');
+      });
+    }
+    function setActive(tab) {
+      clearActive();
+      document.querySelectorAll(`[data-tab="${tab}"]`).forEach(el => {
+        if (window.innerWidth < 768) {
+          el.classList.add('active-mobile');
+        } else {
+          el.classList.add('active-desktop');
+        }
+      });
+    }
+
+    document.querySelectorAll('#mobile-nav .nav-item').forEach(el => {
+      el.addEventListener('click', () => setActive(el.dataset.tab));
+    });
+    document.querySelectorAll('#desktop-nav .nav-item').forEach(el => {
+      el.addEventListener('click', () => setActive(el.dataset.tab));
+    });
+
+    // default
+    setActive('dashboard');
+  </script>
+</body>
+
+</html>

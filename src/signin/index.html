@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login / Signup / Checking</title>
+  <link rel="stylesheet" href="../index.css">
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <a class="back-btn" href="../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+      <path d="M19 12H5"></path>
+      <path d="M12 19l-7-7 7-7"></path>
+    </svg>
+    <span>Back</span>
+  </a>
+  <div class="container" id="form-container">
+    <h2 id="form-title">Login</h2>
+    <form id="auth-form">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <div class="toggle">
+      <span id="toggle-text">Don't have an account?</span>
+      <a href="../signup/index.html" id="toggle-link">Signup</a>
+    </div>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('auth-form');
+    const title = document.getElementById('form-title');
+    const toggleText = document.getElementById('toggle-text');
+    const toggleLink = document.getElementById('toggle-link');
+    const message = document.getElementById('message');
+    let isLogin = true;
+
+    toggleLink.addEventListener('click', () => {
+      isLogin = !isLogin;
+      title.textContent = isLogin ? 'Login' : 'Signup';
+      toggleText.textContent = isLogin ? "Don't have an account?" : "Already have an account?";
+      toggleLink.textContent = isLogin ? 'Signup' : 'Login';
+      form.querySelector('button').textContent = isLogin ? 'Login' : 'Signup';
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (isLogin) {
+        message.textContent = `Checking login for ${email}... ✅`;
+      } else {
+        message.textContent = `Creating account for ${email}... ✅`;
+      }
+    });
+  </script>
+</body>
+
+</html>

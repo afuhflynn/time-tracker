@@ -94,3 +94,16 @@ nav {
   justify-content: center;
   align-items: center;
 }
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  color: var(--foreground);
+  text-decoration: none;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}

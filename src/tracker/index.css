@@ -1,0 +1,207 @@
+/* Mobile menu button */
+#mobile-menu-btn {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 50;
+  background: var(--bg-dark);
+  color: var(--text-white);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: block;
+}
+/* Hide on medium+ */
+@media (min-width: 768px) {
+  #mobile-menu-btn {
+    display: none;
+  }
+}
+
+/* Overlay */
+#mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-color);
+  z-index: 40;
+}
+
+/* Sidebar shared */
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 16rem;
+  background: var(--bg-dark);
+  color: var(--text-white);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out;
+}
+/* Mobile sidebar */
+#mobile-sidebar {
+  left: 0;
+  transform: translateX(-100%);
+  z-index: 45;
+}
+@media (min-width: 768px) {
+  #mobile-sidebar {
+    display: none;
+  }
+}
+
+/* Desktop sidebar */
+#desktop-sidebar {
+  left: 0;
+  width: 4rem;
+  height: 100vh;
+  transform: none !important;
+}
+@media (max-width: 767px) {
+  #desktop-sidebar {
+    display: none;
+  }
+}
+
+/* Header within sidebar */
+.sidebar-header {
+  height: 4rem;
+  border-bottom: 1px solid #374151;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+.sidebar-header h1 {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+/* Nav lists */
+nav ul {
+  list-style: none;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  transition: background 0.2s;
+}
+.nav-item:hover {
+  background: #374151;
+}
+.nav-item.active-mobile {
+  background: var(--primary-dark);
+}
+.nav-item.active-desktop {
+  background: var(--primary-dark);
+  background: var(--primary-dark);
+  background-image: linear-gradient(
+    to right,
+    var(--primary-dark),
+    var(--primary)
+  );
+}
+
+.nav-item lucide-icon {
+  flex-shrink: 0;
+  margin-right: 0.75rem;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.nav-item span {
+  font-size: 0.875rem;
+}
+
+/* Footer workspace */
+.sidebar-footer {
+  margin-top: auto;
+  border-top: 1px solid #374151;
+  padding: 1rem;
+}
+.workspace {
+  display: flex;
+  align-items: center;
+}
+.workspace .avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-white);
+  font-weight: bold;
+}
+.workspace-info {
+  margin-left: 0.5rem;
+}
+.workspace-info .title {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.workspace-info .plan {
+  font-size: 0.75rem;
+  color: var(--text-gray);
+}
+
+/* Tooltip for desktop */
+.desktop-nav .nav-item {
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  height: 4rem;
+  padding: 0;
+}
+.desktop-nav .nav-item span {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+}
+.desktop-nav .nav-item .tooltip {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bg-dark);
+  color: var(--text-white);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+  margin-left: 0.5rem;
+}
+.desktop-nav .nav-item:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Close button icon */
+#mobile-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-white);
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+}
+
+/* Main content shift */
+main {
+  margin-left: 0;
+  padding: 1rem;
+  transition: margin-left 0.3s;
+}
+@media (min-width: 768px) {
+  main {
+    margin-left: 4rem;
+  }
+}
+/* When mobile sidebar open */
+.sidebar-open main {
+  margin-left: 16rem !important;
+}

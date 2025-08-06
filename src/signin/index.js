@@ -5,6 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("login-form");
   const userKey = "userSignInfo";
 
+  const storedData = localStorage.getItem(userKey);
+  const user = JSON.parse(storedData);
+
+  if (user && user?.loggedIn) {
+    window.location.href = "./src/tracker/index.html";
+  }
+
   loginForm.addEventListener("submit", (event) => {
     event.preventDefault();
     console.log("🚀 Login attempt");
@@ -14,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Pull stored user
     const storedData = localStorage.getItem(userKey);
+
     if (!storedData) {
       alert("No account found. Please sign up first.");
       return;
@@ -35,7 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Success!
     alert("✅ Login successful!");
+    const updatedData = {
+      ...user,
+      loggedIn: true,
+    };
     // Redirect to your dashboard or home
-    window.location.href = "../dashboard/index.html";
+    window.location.href = "../tracker/index.html";
   });
 });

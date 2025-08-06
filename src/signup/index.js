@@ -6,7 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmPassword = document.getElementById("confirm-password");
   const signupForm = document.getElementById("signup-form");
 
-  const userSignInfoKey = "userSignInfo";
+  const userKey = "userSignInfo";
+
+  const storedData = localStorage.getItem(userKey);
+  const user = JSON.parse(storedData);
+
+  if (user && user?.loggedIn) {
+    window.location.href = "./src/tracker/index.html";
+  }
 
   // Listen on the FORM, not the button
   signupForm.addEventListener("submit", (event) => {
@@ -26,7 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Save user data
-    localStorage.setItem(userSignInfoKey, JSON.stringify(userData));
+    localStorage.setItem(
+      userKey,
+      JSON.stringify({ ...userData, loggedIn: false })
+    );
 
     alert("Signup successful!");
     window.location.href = "../signin/index.html";

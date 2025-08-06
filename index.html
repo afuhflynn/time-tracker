@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Tracker UI</title>
+  <link rel="stylesheet" href="./src/index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kumbh+Sans:wght@100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <nav>
+    <h1>Time Tracker</h1>
+    <div>
+      <a href="#" class="btn btn-primary">Login</a>
+    </div>
+  </nav>
+  <header class="hero">
+    <h2>Track Your Work Hours Efficiently</h2>
+    <p>Monitor shifts, measure productivity, and get analytics all in one place.</p>
+    <a href="#checkin" class="btn btn-primary">Start Now</a>
+  </header>
+  <section class="features">
+    <div class="feature-card">
+      <h3>Check-In/Out</h3>
+      <p>Log your work start and stop time with one click.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Daily Reports</h3>
+      <p>See your total hours, shifts, and productivity scores.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Analytics</h3>
+      <p>Review your hourly distribution and work trends.</p>
+    </div>
+  </section>
+
+  <!-- Check-In Page -->
+  <section class="card" id="checkin">
+    <h2>Check In</h2>
+    <div class="timer">00:00:00</div>
+    <button class="btn btn-primary">Check In</button>
+  </section>
+
+  <!-- Check-Out Page -->
+  <section class="card">
+    <h2>Check Out</h2>
+    <div class="timer">Shift Time: 04:23:17</div>
+    <p class="text-muted">You were checked in from 8:00 AM - 12:23 PM</p>
+    <button class="btn btn-destructive">Check Out</button>
+  </section>
+</body>
+
+</html>

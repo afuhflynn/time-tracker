@@ -50,7 +50,7 @@ h3 {
   color: #fff;
 }
 .btn-primary:hover {
-  background: #16a085;
+  background: var(--primary);
 }
 .btn-destructive {
   background: var(--destructive);
@@ -88,19 +88,9 @@ nav {
   padding: 4rem 2rem;
   text-align: center;
   background: var(--muted);
-}
-
-.features {
-  display: grid;
-  gap: 2rem;
-  padding: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.feature-card {
-  background: var(--background);
-  padding: 1.5rem;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

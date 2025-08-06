@@ -20,7 +20,7 @@
   </a>
   <div class="container" id="form-container">
     <h2 id="form-title">Login</h2>
-    <form id="auth-form">
+    <form id="login-form">
       <input type="email" id="email" placeholder="Email" required />
       <input type="password" id="password" placeholder="Password" required />
       <button type="submit">Login</button>
@@ -32,33 +32,7 @@
     <div class="message" id="message"></div>
   </div>
 
-  <script>
-    const form = document.getElementById('auth-form');
-    const title = document.getElementById('form-title');
-    const toggleText = document.getElementById('toggle-text');
-    const toggleLink = document.getElementById('toggle-link');
-    const message = document.getElementById('message');
-    let isLogin = true;
-
-    toggleLink.addEventListener('click', () => {
-      isLogin = !isLogin;
-      title.textContent = isLogin ? 'Login' : 'Signup';
-      toggleText.textContent = isLogin ? "Don't have an account?" : "Already have an account?";
-      toggleLink.textContent = isLogin ? 'Signup' : 'Login';
-      form.querySelector('button').textContent = isLogin ? 'Login' : 'Signup';
-    });
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      if (isLogin) {
-        message.textContent = `Checking login for ${email}... ✅`;
-      } else {
-        message.textContent = `Creating account for ${email}... ✅`;
-      }
-    });
+  <script src="./index.js">
   </script>
 </body>
 
